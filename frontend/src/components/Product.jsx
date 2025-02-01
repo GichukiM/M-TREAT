@@ -25,38 +25,32 @@ const ProductPage = ({ mode }) => {
     ],
   };
 
+  const textColor = mode === "dark" ? "text-white" : "text-[#1A4D6D]";
+  const backgroundColor = mode === "dark" ? "bg-[#1A4D6D]" : "bg-white";
+  const buttonBackgroundColor = mode === "dark" ? "#2A7A9D" : "transparent";
+  const buttonTextColor = mode === "dark" ? "white" : "#1A4D6D";
+
   const [selectedImage, setSelectedImage] = useState(product.images[0]);
 
   return (
-    <div
-      className={`px-6 md:px-16 lg:px-24 py-8 ${
-        mode === "dark" ? "bg-[#1A4D6D] text-white" : "bg-white text-black"
-      }`}
-    >
+    <div className={`px-6 md:px-16 lg:px-24 py-8 ${backgroundColor} ${textColor}`}>
       <div className="grid md:grid-cols-2 gap-8">
         {/* Left Side: Image Gallery */}
         <div className="flex flex-col md:flex-row-reverse gap-4">
-          {/* Main Image */}
           <div className="flex-1">
             <img
               src={selectedImage}
-              alt="Selected Product"
+              alt={`Selected Product: ${product.title}`}
               className="w-full h-[400px] object-cover rounded-lg"
             />
           </div>
-
-          {/* Small Thumbnails (Left on larger screens, Below on mobile) */}
           <div className="flex md:flex-col flex-wrap gap-2 mt-2 md:mt-0">
-            {product.images.map((img, index) => (
+            {product.images.map((img) => (
               <img
-                key={index}
+                key={img}
                 src={img}
-                alt={`Thumbnail ${index + 1}`}
-                className={`w-20 h-20 object-cover rounded-lg cursor-pointer border-2 ${
-                  selectedImage === img
-                    ? "border-blue-500"
-                    : "border-transparent"
-                }`}
+                alt={`Thumbnail for ${product.title}`}
+                className={`w-20 h-20 object-cover rounded-lg cursor-pointer border-2 ${selectedImage === img ? "border-blue-500" : "border-transparent"}`}
                 onClick={() => setSelectedImage(img)}
               />
             ))}
@@ -66,28 +60,20 @@ const ProductPage = ({ mode }) => {
         {/* Right Side: Description & Button */}
         <div className="flex flex-col space-y-6">
           <Typography variant="h4">{product.title}</Typography>
-          <Typography
-            variant="h6"
-            className={`mb-4 ${
-              mode === "light" ? "text-[#1A4D6D]" : "text-white"
-            }`}
-          >
+          <Typography variant="h6" className="mb-4">
             KES {product.price.toFixed(2)}
           </Typography>
-
           <Typography className="pb-4">{product.description}</Typography>
 
           <Button
             variant="contained"
-            className={`w-fit py-3 px-6 text-lg font-bold transition`}
             sx={{
               borderColor: mode === "light" ? "#1A4D6D" : "#2A7A9D",
-              color: mode === "light" ? "#1A4D6D" : "white",
-              backgroundColor: mode === "light" ? "transparent" : "#2A7A9D",
+              color: buttonTextColor,
+              backgroundColor: buttonBackgroundColor,
               "&:hover": {
                 borderColor: mode === "light" ? "#2A7A9D" : "#FFFFFF",
                 backgroundColor: mode === "light" ? "#B3D7E0" : "#1A4D6D",
-                color: mode === "light" ? "#1A4D6D" : "white",
               },
             }}
           >
@@ -102,12 +88,7 @@ const ProductPage = ({ mode }) => {
           Customer Reviews
         </Typography>
         {product.reviews.map((review, index) => (
-          <div
-            key={index}
-            className={`border-b pb-4 mb-4 ${
-              mode === "dark" ? "border-gray-400" : "border-gray-700"
-            }`}
-          >
+          <div key={index} className={`border-b pb-4 mb-4 ${mode === "dark" ? "border-gray-400" : "border-gray-700"}`}>
             <Typography variant="h6">{review.name}</Typography>
             <Rating value={review.rating} readOnly />
             <Typography>{review.comment}</Typography>
