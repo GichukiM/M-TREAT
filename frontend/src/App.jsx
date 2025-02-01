@@ -1,0 +1,61 @@
+import { useState, useEffect } from "react";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Route, Routes } from "react-router-dom"; 
+import Navbar from "./components/Navbar";
+import HomePage from "./pages/Home";
+import Footer from "./components/Footer";
+
+function App() {
+  const [mode, setMode] = useState("light");
+
+  // Retrieve saved theme from localStorage (if exists)
+  useEffect(() => {
+    const savedMode = localStorage.getItem('theme');
+    if (savedMode) {
+      setMode(savedMode);
+    }
+  }, []);
+
+  // Update body background color when mode changes
+  useEffect(() => {
+    document.body.style.backgroundColor = mode === "light" ? "#FFFFFF" : "#1A4D6D";
+    localStorage.setItem('theme', mode); // Save theme to localStorage
+  }, [mode]);
+
+  const theme = createTheme({
+    palette: {
+      mode: mode,
+      primary: { main: "#1A4D6D" },
+      secondary: { main: "#2A7A9D" },
+      background: {
+        default: mode === "light" ? "#B3D7E0" : "#1A4D6D",
+      },
+    },
+    components: {
+      MuiAppBar: {
+        styleOverrides: {
+          root: {
+            backgroundColor: mode === "light" ? "#ffffff" : "#1A4D6D",
+            boxShadow: "none",
+            borderBottom: "none",
+          },
+        },
+      },
+    },
+  });
+
+  return (
+    <ThemeProvider theme={theme}>
+      <div className="px-6 md:px-16 lg:px-24">
+        <Navbar mode={mode} setMode={setMode} />
+        <Routes>
+          <Route path="/" element={<HomePage mode={mode} />} />
+          <Route path="/home" element={<HomePage mode={mode} setMode={setMode} />} />
+        </Routes>
+        <Footer mode={mode} />
+      </div>
+    </ThemeProvider>
+  );
+}
+
+export default App;
