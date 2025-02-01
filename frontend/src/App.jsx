@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/Home";
 import Footer from "./components/Footer";
+import ProductListPage from "./pages/ProductListPage";
 
 function App() {
   const [mode, setMode] = useState("light");
@@ -50,7 +51,8 @@ function App() {
         <Navbar mode={mode} setMode={setMode} />
         <Routes>
           <Route path="/" element={<HomePage mode={mode} />} />
-          <Route path="/home" element={<HomePage mode={mode} setMode={setMode} />} />
+          <Route path="/home" element={<HomePage mode={mode} />} />
+          <Route path="/shop" element={<ProductListPage mode={mode} />} />
         </Routes>
         <Footer mode={mode} />
       </div>

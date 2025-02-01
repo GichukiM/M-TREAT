@@ -3,7 +3,7 @@ import { Carousel } from 'react-responsive-carousel';
 
 const HeroSection = () => (
   <div className="relative w-full h-[80vh] bg-[#B3D7E0] text-white flex items-center justify-center">
-    {/* Carousel for promotions */}
+    {/* Carousel */}
     <Carousel autoPlay infiniteLoop showThumbs={false} showStatus={false}>
       {/* First Carousel Item */}
       <div className="h-full flex items-center justify-center relative">

@@ -3,6 +3,7 @@ import { Button } from "@mui/material";
 
 // eslint-disable-next-line react/prop-types
 const ProductSection = ({ mode }) => {
+    // Mock Data
   const bestsellers = [
     {
       name: "Healthcare Kit",

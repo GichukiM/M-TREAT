@@ -6,12 +6,12 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 // eslint-disable-next-line react/prop-types
 const Footer = ({ mode }) => {
-  const linkColor = mode === 'dark' ? '#B3D7E0' : '#1A4D6D'; // Determine link color based on mode
+  const linkColor = mode === 'dark' ? '#B3D7E0' : '#1A4D6D';
 
   return (
-    <div className={`py-12 ${mode === 'dark' ? 'bg-[#1A4D6D] text-white' : 'bg-[#FFFFFF] text-black'}`}>
+    <div className={`py-12 ${mode === 'dark' ? 'bg-[#1A4D6D] text-white' : 'bg-[#FFFFFF] text-black'} border-t py-4`}>
       {/* Newsletter Section */}
-      <div className="max-w-screen-lg mx-auto px-6 mb-12 text-center sm:text-left">
+      <div className="max-w-screen-lg mx-auto px-6 mb-12  text-center sm:text-left">
         <Typography variant="h4" gutterBottom>
           Subscribe to Our Newsletter
         </Typography>
