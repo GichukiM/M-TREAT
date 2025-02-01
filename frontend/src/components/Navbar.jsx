@@ -13,9 +13,10 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 // eslint-disable-next-line react/prop-types
-const Navbar = ({ mode, setMode, setCartOpen }) => {
+const Navbar = ({ mode, setMode, setCartOpen, setWishListOpen }) => {
   const [openDrawer, setOpenDrawer] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -74,6 +75,15 @@ const Navbar = ({ mode, setMode, setCartOpen }) => {
               }`}
             />
           </IconButton>
+
+          {/* Wish Icon (Desktop) */}
+          <IconButton onClick={() => setWishListOpen(true)}>
+            <FavoriteIcon
+              className={`${
+                mode === "light" ? "text-[#1A4D6D]" : "text-white"
+              }`}
+            />
+          </IconButton>
         </Box>
 
         {/* Mobile Menu Icon + Dark Mode + Cart Icon */}
@@ -90,6 +100,15 @@ const Navbar = ({ mode, setMode, setCartOpen }) => {
           {/* Cart Icon (Mobile) */}
           <IconButton onClick={() => setCartOpen(true)}>
             <ShoppingCartIcon
+              className={`${
+                mode === "light" ? "text-[#1A4D6D]" : "text-white"
+              }`}
+            />
+          </IconButton>
+
+          {/* Wish Icon (Mobile) */}
+          <IconButton onClick={() => setWishListOpen(true)}>
+            <FavoriteIcon
               className={`${
                 mode === "light" ? "text-[#1A4D6D]" : "text-white"
               }`}
