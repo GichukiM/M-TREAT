@@ -9,6 +9,7 @@ import Product from "./pages/Product";
 import ShoppingCart from "./components/ShoppingCart";
 import PageTransition from "./components/PageTransition"; 
 import Wishlist from "./components/WishList";
+import Contact from "./pages/Contact";
 
 function App() {
   const [mode, setMode] = useState("dark");
@@ -64,6 +65,7 @@ function App() {
             <Route path="/home" element={<HomePage mode={mode} />} />
             <Route path="/shop" element={<ProductListPage mode={mode} />} />
             <Route path="/product" element={<Product mode={mode} />} />
+            <Route path="/contactUs" element={<Contact mode={mode} />} />
           </Routes>
         </PageTransition>
 

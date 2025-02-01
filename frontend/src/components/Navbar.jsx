@@ -31,7 +31,9 @@ const Navbar = ({ mode, setMode, setCartOpen, setWishListOpen }) => {
       }`}
       sx={{ backgroundColor: mode === "light" ? "bg-white" : "#1A4D6D" }}
     >
-      <Toolbar className="flex justify-between items-center">
+      <Toolbar className={`flex justify-between items-center ${
+        mode === "light" ? "bg-white" : "bg-[#1A4D6D]"
+      }`}>
         {/* Logo */}
         <Link
           to="/"

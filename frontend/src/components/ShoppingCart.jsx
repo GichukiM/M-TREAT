@@ -90,7 +90,7 @@ const ShoppingCart = ({ open, onClose, mode }) => {
               className={
                 mode === "light"
                   ? "border-[#1A4D6D] text-[#1A4D6D] hover:bg-[#B3D7E0] transition-all duration-300"
-                  : "border-white text-white bg-transparent hover:bg-[#444444] transition-all duration-300"
+                  : "border-white text-white hover:bg-[#444444] transition-all duration-300"
               }
             >
               Continue Shopping

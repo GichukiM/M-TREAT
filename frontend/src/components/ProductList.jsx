@@ -75,6 +75,11 @@ const ProductsListingPage = ({ mode }) => {
     }
 
     setFilteredProducts(filtered);
+
+    // If the filtered products are fewer than the products on the current page, go to page 1
+    if (filtered.length < (page - 1) * 4) {
+      setPage(1);
+    }
   }, [category, priceRange]);
 
   // Handle page change for pagination
@@ -91,14 +96,10 @@ const ProductsListingPage = ({ mode }) => {
 
   return (
     <div
-      className={`products-listing-page ${
-        mode === "light" ? "text-[#1A4D6D]" : "bg-[#1A4D6D] text-white"
-      } py-8`}
+      className={`products-listing-page ${mode === "light" ? "text-[#1A4D6D]" : "bg-[#1A4D6D] text-white"} py-8`}
     >
       <h1
-        className={`text-3xl text-center font-bold ${
-          mode === "light" ? "text-[#1A4D6D]" : "text-white"
-        } mb-6`}
+        className={`text-3xl text-center font-bold ${mode === "light" ? "text-[#1A4D6D]" : "text-white"} mb-6`}
       >
         Products
       </h1>
@@ -173,8 +174,7 @@ const ProductsListingPage = ({ mode }) => {
                   sx={{
                     borderColor: mode === "light" ? "#1A4D6D" : "#2A7A9D",
                     color: mode === "light" ? "#1A4D6D" : "white",
-                    backgroundColor:
-                      mode === "light" ? "transparent" : "#2A7A9D",
+                    backgroundColor: mode === "light" ? "transparent" : "#2A7A9D",
                     "&:hover": {
                       borderColor: mode === "light" ? "#2A7A9D" : "#FFFFFF",
                       backgroundColor: mode === "light" ? "#B3D7E0" : "#1A4D6D",
