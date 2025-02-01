@@ -6,9 +6,11 @@ import HomePage from "./pages/Home";
 import Footer from "./components/Footer";
 import ProductListPage from "./pages/ProductListPage";
 import Product from "./pages/Product";
+import ShoppingCart from "./components/ShoppingCart";
 
 function App() {
   const [mode, setMode] = useState("dark");
+  const [cartOpen, setCartOpen] = useState(false);
 
   // Retrieve saved theme from localStorage (if exists)
   useEffect(() => {
@@ -49,7 +51,8 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div className="px-6 md:px-16 lg:px-24">
-        <Navbar mode={mode} setMode={setMode} />
+        <Navbar mode={mode} setMode={setMode} setCartOpen={setCartOpen}/>
+        <ShoppingCart mode={mode} open={cartOpen} onClose={() => setCartOpen(false)} />
         <Routes>
           <Route path="/" element={<HomePage mode={mode} />} />
           <Route path="/home" element={<HomePage mode={mode} />} />

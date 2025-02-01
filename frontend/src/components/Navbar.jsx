@@ -12,9 +12,10 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 // eslint-disable-next-line react/prop-types
-const Navbar = ({ mode, setMode }) => {
+const Navbar = ({ mode, setMode, setCartOpen }) => {
   const [openDrawer, setOpenDrawer] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -42,7 +43,7 @@ const Navbar = ({ mode, setMode }) => {
 
         {/* Desktop Navigation */}
         <Box className="hidden sm:flex space-x-6">
-          {["Home", "Shop", "Contact Us", "Cart"].map((item, index) => (
+          {["Home", "Shop", "Contact Us"].map((item, index) => (
             <Link
               key={index}
               to={`/${item.toLowerCase().replace(" ", "")}`}
@@ -55,6 +56,7 @@ const Navbar = ({ mode, setMode }) => {
               {item}
             </Link>
           ))}
+
           {/* Dark Mode Toggle */}
           <Button onClick={() => setMode(mode === "light" ? "dark" : "light")}>
             <DarkModeIcon
@@ -63,9 +65,18 @@ const Navbar = ({ mode, setMode }) => {
               }`}
             />
           </Button>
+
+          {/* Cart Icon (Desktop) */}
+          <IconButton onClick={() => setCartOpen(true)}>
+            <ShoppingCartIcon
+              className={`${
+                mode === "light" ? "text-[#1A4D6D]" : "text-white"
+              }`}
+            />
+          </IconButton>
         </Box>
 
-        {/* Mobile Menu Icon + Dark Mode Icon */}
+        {/* Mobile Menu Icon + Dark Mode + Cart Icon */}
         <Box className="sm:hidden flex items-center space-x-4">
           {/* Dark Mode Button on Mobile */}
           <Button onClick={() => setMode(mode === "light" ? "dark" : "light")}>
@@ -75,6 +86,17 @@ const Navbar = ({ mode, setMode }) => {
               }`}
             />
           </Button>
+
+          {/* Cart Icon (Mobile) */}
+          <IconButton onClick={() => setCartOpen(true)}>
+            <ShoppingCartIcon
+              className={`${
+                mode === "light" ? "text-[#1A4D6D]" : "text-white"
+              }`}
+            />
+          </IconButton>
+
+          {/* Mobile Menu Icon */}
           <IconButton
             className="text-[#1A4D6D] sm:!hidden hover:text-[#2A7A9D] transition-all duration-300"
             onClick={handleDrawerToggle}
@@ -88,7 +110,7 @@ const Navbar = ({ mode, setMode }) => {
       <Drawer anchor="right" open={openDrawer} onClose={handleDrawerToggle}>
         <Box className="w-64 h-full bg-white text-[#1A4D6D] p-6">
           <List>
-            {["Home", "Shop", "Contact Us", "Cart"].map((item, index) => (
+            {["Home", "Shop", "Contact Us"].map((item, index) => (
               <ListItem key={index} button onClick={handleDrawerToggle}>
                 <Link
                   to={`/${item.toLowerCase().replace(" ", "")}`}
