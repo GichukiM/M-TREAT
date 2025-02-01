@@ -5,9 +5,10 @@ import Navbar from "./components/Navbar";
 import HomePage from "./pages/Home";
 import Footer from "./components/Footer";
 import ProductListPage from "./pages/ProductListPage";
+import Product from "./pages/Product";
 
 function App() {
-  const [mode, setMode] = useState("light");
+  const [mode, setMode] = useState("dark");
 
   // Retrieve saved theme from localStorage (if exists)
   useEffect(() => {
@@ -20,7 +21,7 @@ function App() {
   // Update body background color when mode changes
   useEffect(() => {
     document.body.style.backgroundColor = mode === "light" ? "#FFFFFF" : "#1A4D6D";
-    localStorage.setItem('theme', mode); // Save theme to localStorage
+    localStorage.setItem('theme', mode);
   }, [mode]);
 
   const theme = createTheme({
@@ -53,6 +54,7 @@ function App() {
           <Route path="/" element={<HomePage mode={mode} />} />
           <Route path="/home" element={<HomePage mode={mode} />} />
           <Route path="/shop" element={<ProductListPage mode={mode} />} />
+          <Route path="/product" element={<Product mode={mode} />} />
         </Routes>
         <Footer mode={mode} />
       </div>

@@ -15,7 +15,7 @@ const Footer = ({ mode }) => {
         <Typography variant="h4" gutterBottom>
           Subscribe to Our Newsletter
         </Typography>
-        <Typography variant="body1" paragraph>
+        <Typography variant="body1">
           Get the latest updates, promotions, and health tips directly to your inbox.
         </Typography>
         <Grid2 container spacing={2} justifyContent="between" alignItems="center">
@@ -29,7 +29,17 @@ const Footer = ({ mode }) => {
             />
           </Grid2>
           <Grid2 item xs="auto">
-            <Button variant="contained" color="primary" className="bg-[#2A7A9D]" sx={{ '&:hover': { backgroundColor: '#1A4D6D' } }}>
+            <Button variant="contained" color="primary" className="bg-[#2A7A9D]" sx={{
+                    borderColor: mode === "light" ? "#1A4D6D" : "#2A7A9D",
+                    color: mode === "light" ? "#1A4D6D" : "white",
+                    backgroundColor:
+                      mode === "light" ? "transparent" : "#2A7A9D",
+                    "&:hover": {
+                      borderColor: mode === "light" ? "#2A7A9D" : "#FFFFFF",
+                      backgroundColor: mode === "light" ? "#B3D7E0" : "#1A4D6D",
+                      color: mode === "light" ? "#1A4D6D" : "white",
+                    },
+                  }}>
               Subscribe
             </Button>
           </Grid2>

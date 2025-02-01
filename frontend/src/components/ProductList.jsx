@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button, TextField, Select, MenuItem, Pagination } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 const ProductsListingPage = ({ mode }) => {
@@ -7,6 +8,7 @@ const ProductsListingPage = ({ mode }) => {
   const [category, setCategory] = useState("");
   const [priceRange, setPriceRange] = useState([0, 1000]);
   const [page, setPage] = useState(1);
+  const navigate = useNavigate();
 
   // Example product data (you can fetch this from an API or use a static array)
   const allProducts = [
@@ -180,8 +182,9 @@ const ProductsListingPage = ({ mode }) => {
                     },
                   }}
                   className="mt-4"
+                  onClick={() => navigate("/product")}
                 >
-                  View Details
+                  View Product
                 </Button>
               </div>
             ))}
